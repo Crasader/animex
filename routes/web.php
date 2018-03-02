@@ -6,7 +6,7 @@ Route::get('/', function () {
 
 Route::get('post', function () {
     return view('pages.post');
-});
+})->name('public.post');
 
 Route::get('about', function () {
     return view('pages.about');
