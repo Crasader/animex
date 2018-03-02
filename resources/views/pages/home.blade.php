@@ -1,4 +1,7 @@
 @extends('templates.public-main')
+@section('background-image', 'home')
+@section('main-title', 'Animex')
+@section('main-subheading', 'El mejor anime para todos')
 
 @section('content')
 <div class="post-preview">

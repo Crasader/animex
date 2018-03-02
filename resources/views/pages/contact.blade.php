@@ -1,4 +1,6 @@
-@extends('templates.public-contact')
+@extends('templates.public-main')
+@section('background-image', 'contact')
+@section('main-title', 'Cont&aacute;ctanos')
 
 @section('content')
     <p>Want to get in touch? Fill out the form below to send me a message and I will get back to you as soon as possible!</p>
