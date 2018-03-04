@@ -4,9 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <title>Animex</title>
+        <title>@yield('page-title', 'Animex')</title>
 
-        <meta name="description" content="">
+        <meta name="description" content="@yield('page-description')">
+
+        <meta name="meta_robots" content="@yield('meta-robots', 'index, follow')">
 
         <!-- Bootstrap core CSS -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -27,12 +29,12 @@
         <!-- Main Content -->
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="col-lg-12 col-md-10 mx-auto">
                     @yield('content')
                     <hr>
                     <!-- Pager -->
                     <div class="clearfix">
-                        <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+                        <a class="btn btn-primary float-right" href="#">Publicaciones Anteriores &rarr;</a>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ class PostsTableSeeder extends Seeder
     {
         Post::create([
             'category_id' => '1',
-            'user_id' => '1',
+            'user_id' => '3',
             'title' => 'Dragon Ball Super',
             'slug' => 'dragon-ball-super',
             'image' => 'dragon-ball-super.jpg',
@@ -42,7 +42,7 @@ class PostsTableSeeder extends Seeder
 
         Post::create([
             'category_id' => '1',
-            'user_id' => '1',
+            'user_id' => '2',
             'title' => 'Shingeki no Kyojin',
             'slug' => 'shingeki-no-kyojin',
             'image' => 'shingeki-no-kyojin.jpg',
@@ -56,11 +56,11 @@ class PostsTableSeeder extends Seeder
 
         Post::create([
             'category_id' => '1',
-            'user_id' => '1',
-            'title' => 'Code Geas',
-            'slug' => 'code-geas',
-            'image' => 'code-geas.jpg',
-            'image_alt' => 'Code Geas',
+            'user_id' => '4',
+            'title' => 'Death Note',
+            'slug' => 'death-note',
+            'image' => 'death-note.jpg',
+            'image_alt' => 'Death Note',
             'content' => '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem corporis distinctio dolore doloremque doloribus enim, maxime nam natus officiis optio quas repudiandae sequi similique soluta suscipit velit. Voluptates.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem corporis distinctio dolore doloremque doloribus enim, maxime nam natus officiis optio quas repudiandae sequi similique soluta suscipit velit. Voluptates.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem corporis distinctio dolore doloremque doloribus enim, maxime nam natus officiis optio quas repudiandae sequi similique soluta suscipit velit. Voluptates.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem corporis distinctio dolore doloremque doloribus enim, maxime nam natus officiis optio quas repudiandae sequi similique soluta suscipit velit. Voluptates.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem corporis distinctio dolore doloremque doloribus enim, maxime nam natus officiis optio quas repudiandae sequi similique soluta suscipit velit. Voluptates.</p>',
             'active' => 1,
             'seo_title' => 'Code Geas',

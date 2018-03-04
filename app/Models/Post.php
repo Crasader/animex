@@ -3,6 +3,7 @@
 namespace Animex\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class Post extends Model
 {
@@ -19,4 +20,14 @@ class Post extends Model
       'seo_description',
       'meta_robots',
     ];
+
+    /**
+     * Get the user that the post belongs to.
+     *
+     * @return Relation
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -1,12 +1,8 @@
 <?php
 
-Route::get('/', function () {
-    return view('pages.home');
-});
+Route::get('/', 'PagesController@home')->name('public.page.home');
 
-Route::get('post', function () {
-    return view('pages.post');
-})->name('public.post');
+Route::get('/{post?}', 'PagesController@post')->name('public.page.post');
 
 Route::get('about', function () {
     return view('pages.about');

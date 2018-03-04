@@ -2,6 +2,7 @@
 
 namespace Animex\Models;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -26,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get the posts for the user.
+     *
+     * @return Relation
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
