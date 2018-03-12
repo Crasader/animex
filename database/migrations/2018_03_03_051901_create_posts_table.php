@@ -24,6 +24,8 @@ class CreatePostsTable extends Migration
             $table->string('image_alt')->nullable();
             $table->text('content');
             $table->boolean('active')->nullable()->default(0);
+            $table->boolean('dislike')->nullable();
+            $table->dateTime('published_at')->nullable();
 
             // SEO
             $table->string('seo_title', 70)->nullable();

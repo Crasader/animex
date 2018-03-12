@@ -1,6 +1,7 @@
 <?php
 
 use Animex\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class PostsTableSeeder extends Seeder
@@ -24,6 +25,7 @@ class PostsTableSeeder extends Seeder
             'seo_title' => 'Dragon Ball Super',
             'seo_description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem corporis distinctio dolore doloremque doloribus enim, maxime nam natus offici ...',
             'meta_robots' => 'index, follow',
+            'published_at' => Carbon::now(),
         ]);
 
         Post::create([
@@ -38,6 +40,7 @@ class PostsTableSeeder extends Seeder
             'seo_title' => 'Yowamushi Pedal',
             'seo_description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem corporis distinctio dolore doloremque doloribus enim, maxime nam natus offici ...',
             'meta_robots' => 'index, follow',
+            'published_at' => Carbon::now()->addSeconds(1),
         ]);
 
         Post::create([
@@ -52,6 +55,7 @@ class PostsTableSeeder extends Seeder
             'seo_title' => 'Shingeki no Kyojin',
             'seo_description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem corporis distinctio dolore doloremque doloribus enim, maxime nam natus offici ...',
             'meta_robots' => 'index, follow',
+            'published_at' => Carbon::now()->addSeconds(2),
         ]);
 
         Post::create([
@@ -66,6 +70,7 @@ class PostsTableSeeder extends Seeder
             'seo_title' => 'Code Geas',
             'seo_description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores autem corporis distinctio dolore doloremque doloribus enim, maxime nam natus offici ...',
             'meta_robots' => 'index, follow',
+            'published_at' => Carbon::now()->addSeconds(3),
         ]);
 
         $this->command->info('Posts Table Seeded !');
