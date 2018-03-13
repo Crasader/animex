@@ -32,8 +32,6 @@ class PagesController extends Controller
     {
         $post = Post::where('slug', $slug)->first();
 
-        return (!$post) ?
-            redirect()->route('public.page.home') :
-            view('pages.post', compact('post'));
+        return view('pages.post', compact('post'));
     }
 }

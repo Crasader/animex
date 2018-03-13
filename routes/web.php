@@ -1,5 +1,12 @@
 <?php
 
+// ADMIN ROUTES
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    Route::get('/', function () {
+         return view('admin.dashboard');
+    })->name('dashboard');
+});
+
 Route::get('/', 'PagesController@home')->name('public.page.home');
 
 Route::get('/{post?}', 'PagesController@post')->name('public.page.post');
