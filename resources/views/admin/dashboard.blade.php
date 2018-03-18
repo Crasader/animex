@@ -1,6 +1,5 @@
 @extends('templates.admin-main')
-@section('background-image', 'animex-banner.jpg')
-@section('main-title', 'Dashboard')
+@section('main-title', 'Panel de Control')
 
 @section('content')
 <div class="box">

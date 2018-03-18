@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-        <title>Dashboard</title>
+        <title>@yield('main-title', 'Dashboard')</title>
 
         <link rel="stylesheet" href="/css/admin/bootstrap.min.css">
         <link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -20,6 +20,8 @@
 
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+        @yield('custom-styles')
 </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <!-- Site wrapper -->
@@ -62,5 +64,7 @@
                 $('.sidebar-menu').tree()
             })
         </script>
+
+        @yield('custom-scripts')
     </body>
 </html>
