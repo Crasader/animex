@@ -1,10 +1,14 @@
 <?php
 
 // ADMIN ROUTES
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function() {
     Route::get('/', function () {
-         return view('admin.dashboard');
+        return view('admin.dashboard');
     })->name('dashboard');
+
+    Route::resource('categories', 'CategoriesController');
+    Route::resource('posts', 'PostsController');
+    Route::resource('tags', 'TagsController');
 });
 
 Route::get('/', 'PagesController@home')->name('public.page.home');
