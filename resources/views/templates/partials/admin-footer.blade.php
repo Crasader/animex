@@ -2,5 +2,5 @@
     <div class="pull-right hidden-xs">
         <b>Version</b> 1.0.0
     </div>
-    <strong>Soundcore Records</strong>
+    <strong>Animex Blog</strong>
 </footer>
