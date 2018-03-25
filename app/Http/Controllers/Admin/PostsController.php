@@ -2,6 +2,8 @@
 
 namespace Animex\Http\Controllers\Admin;
 
+use Animex\Models\Category;
+use Animex\Models\Post;
 use Illuminate\Http\Request;
 use Animex\Http\Controllers\Controller;
 
@@ -14,7 +16,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('admin.posts.index');
+        $posts = Post::limit(100)->get();
+
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -24,7 +28,9 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::select('id','name')->get();
+
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -35,7 +41,11 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = Post::create($request->all());
+
+        session()->flash('message', 'Se ha creado el post "'.$post->title.'" exitosamente');
+
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -46,7 +56,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -57,7 +69,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post =  Post::find($id);
+        $categories = Category::select('id','name')->get();
+
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -69,7 +84,12 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $post->update($request->all());
+
+        session()->flash('message', "Se actualizo correctamente el post: \"{$post->title}\"");
+
+        return redirect()->route('admin.posts.index');
     }
 
     /**

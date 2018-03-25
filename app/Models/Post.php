@@ -8,18 +8,21 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 class Post extends Model
 {
     protected $fillable = [
-      'category_id',
-      'user_id',
-      'title',
-      'slug',
-      'image',
-      'image_alt',
-      'content',
-      'active',
-      'seo_title',
-      'seo_description',
-      'meta_robots',
+        'category_id',
+        'user_id',
+        'title',
+        'slug',
+        'subtitle',
+        'image',
+        'image_alt',
+        'content',
+        'active',
+        'seo_title',
+        'seo_description',
+        'meta_robots',
     ];
+
+    protected $dates = ['published_at'];
 
     /**
      * Get the user that the post belongs to.
