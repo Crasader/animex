@@ -31,18 +31,18 @@
                     @foreach($posts as $post)
                     <tr>
                         <td>{{ $post->title }}</td>
-                        <td class="text-center">{{ $post->category_id }}</td>
                         <td class="text-center">
-                            @if($post->active)
-                                <i class="fa fa-check text-success"></i>
-                            @else
-                                <i class="fa fa-remove text-danger"></i>
-                            @endif
+                            <a href="{{ route('admin.categories.show', $post->category->slug) }}">
+                                {{ $post->category->name }}
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            {!! toggle_status($post->id, 'posts', $post->active) !!}
                         </td>
                         <td class="text-center">
                             <a href="{!! route('admin.posts.show', $post->id) !!}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                             <a href="{!! route('admin.posts.edit', $post->id) !!}" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                            <a href="{!! route('admin.posts.destroy', $post->id) !!}" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+                            {!! delete_resource($post->id, 'posts') !!}
                         </td>
                     </tr>
                     @endforeach
@@ -65,16 +65,23 @@
 @endsection
 
 @section('custom-scripts')
-    <!-- CK Editor -->
-    <script src="/js/admin/ckeditor/ckeditor.js"></script>
-    <script>
-        $(function () {
-            // Replace the <textarea id="editor"> with a CKEditor
-            // instance, using default configuration.
-            CKEDITOR.replace('editor', {
-                language: 'es',
-                scayt_sLang: 'es_ES',
-            });
-        })
-    </script>
+<script>
+    $(document).on("submit", "#delete", function() {
+        return confirm("¿ Desea eliminar la publicación ?");
+    });
+</script>
+<!-- CK Editor -->
+
+<script src="/js/admin/ckeditor/ckeditor.js"></script>
+
+<script>
+    $(function () {
+        // Replace the <textarea id="editor"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('editor', {
+            language: 'es',
+            scayt_sLang: 'es_ES',
+        });
+    })
+</script>
 @endsection

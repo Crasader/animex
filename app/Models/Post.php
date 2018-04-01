@@ -25,6 +25,16 @@ class Post extends Model
     protected $dates = ['published_at'];
 
     /**
+     * Get the category that the post belongs to.
+     *
+     * @return Relation
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
      * Get the user that the post belongs to.
      *
      * @return Relation

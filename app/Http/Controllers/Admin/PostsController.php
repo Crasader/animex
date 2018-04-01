@@ -2,6 +2,7 @@
 
 namespace Animex\Http\Controllers\Admin;
 
+use Animex\Http\Requests\PostsRequest;
 use Animex\Models\Category;
 use Animex\Models\Post;
 use Illuminate\Http\Request;
@@ -16,7 +17,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::limit(100)->get();
+        $posts = Post::with(['category' => function($query) {
+            $query->select('id', 'name', 'slug');
+        }])->limit(100)->get();
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -39,9 +42,11 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostsRequest $request)
     {
-        $post = Post::create($request->all());
+        $post = new Post($request->all());
+        $post->user_id = 1; // Debemos poner Auth::user()->id
+        $post->save();
 
         session()->flash('message', 'Se ha creado el post "'.$post->title.'" exitosamente');
 
@@ -56,7 +61,13 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
+        $post = Post::with(['category' => function($query) {
+            $query->select('id', 'name', 'slug');
+        }])
+            ->with(['user' => function($query) {
+                $query->select('id','username');
+            }])
+            ->where('id', $id)->first();
 
         return view('admin.posts.show', compact('post'));
     }
@@ -93,6 +104,33 @@ class PostsController extends Controller
     }
 
     /**
+     * Update the status of resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function status(Request $request, $id)
+    {
+        $post = Post::where('id', $id)->select('id','title', 'active')->first();
+
+        if($post->active) {
+            $message = 'desactivó';
+            $post->active = 0;
+        } else {
+            $message = 'activó';
+            $post->active = 1;
+        }
+
+        // Save active status to database
+        $post->save();
+
+        session()->flash('message', "Se {$message} correctamente el post: \"{$post->title}\"");
+
+        return redirect()->route('admin.posts.index');
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -100,6 +138,11 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::where('id', $id)->select('id', 'title')->first();
+        $post->delete();
+
+        session()->flash('message', "Se eliminó correctamente el post: \"{$post->title}\"");
+
+        return redirect()->route('admin.posts.index');
     }
 }

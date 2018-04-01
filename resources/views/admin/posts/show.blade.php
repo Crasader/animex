@@ -10,12 +10,16 @@
         <table class="table table-striped">
             <tr>
                 <th>Categoría</th>
-                <td>{!! $post->category_id !!}</td>
+                <td>{!! $post->category->name !!}</td>
             </tr>
 
             <tr>
                 <th>Usuario</th>
-                <td>{!! $post->user_id !!}</td>
+                <td>
+                    <a href="{{ route('admin.users.show', $post->user->username) }}">
+                        {!! $post->user->username !!}
+                    </a>
+                </td>
             </tr>
 
             <tr>

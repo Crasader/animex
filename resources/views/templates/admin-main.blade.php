@@ -41,6 +41,8 @@
 
                 <!-- Main content -->
                 <section class="content">
+                    @include('admin._messages')
+
                     @yield('content')
                 </section>
                 <!-- /.content -->

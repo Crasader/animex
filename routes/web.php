@@ -6,7 +6,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         return view('admin.dashboard');
     })->name('dashboard');
 
+    Route::resource('users', 'UsersController');
     Route::resource('categories', 'CategoriesController');
+    Route::patch('posts/status/{id}', 'PostsController@status')->name('posts.status');
     Route::resource('posts', 'PostsController');
     Route::resource('tags', 'TagsController');
 });

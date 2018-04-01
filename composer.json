@@ -27,7 +27,8 @@
         ],
         "psr-4": {
             "Animex\\": "app/"
-        }
+        },
+        "files": ["app/Http/Helpers.php"]
     },
     "autoload-dev": {
         "psr-4": {
