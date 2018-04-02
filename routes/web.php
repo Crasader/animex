@@ -1,10 +1,12 @@
 <?php
 
+Auth::routes();
+
 // ADMIN ROUTES
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function() {
     Route::get('/', function () {
         return view('admin.dashboard');
-    })->name('dashboard');
+    })->name('dashboard')->middleware('auth');
 
     Route::resource('users', 'UsersController');
     Route::resource('categories', 'CategoriesController');

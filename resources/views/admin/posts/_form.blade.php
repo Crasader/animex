@@ -107,16 +107,20 @@
             <select name="meta_robots" id="meta_robots" class="form-control">
                 <option disabled selected>Selecciona una opción</option>
                 <option value="index, follow"
-                    {{ old('meta_robots') == 'index, follow' ? 'selected' : null  }}
+                    {{ (isset($post) && ($post->meta_robots == 'index, follow')) ? 'selected' : null }}
+                    {{ (old('meta_robots') == 'index, follow') ? 'selected' : null }}
                 >Seguir e Indexar</option>
                 <option value="noindex, follow"
-                    {{ old('meta_robots') == 'noindex, follow' ? 'selected' : null  }}
+                    {{ (isset($post) && ($post->meta_robots == 'noindex, follow')) ? 'selected' : null }}
+                        {{ (old('meta_robots') == 'noindex, follow') ? 'selected' : null }}
                 >No Seguir e Indexar</option>
                 <option value="index, nofollow"
-                    {{ old('meta_robots') == 'index, nofollow' ? 'selected' : null  }}
+                    {{ (isset($post) && ($post->meta_robots == 'index, nofollow')) ? 'selected' : null }}
+                    {{ (old('meta_robots') == 'index, nofollow') ? 'selected' : null }}
                 >Indexar y no Seguir</option>
                 <option value="noindex, nofollow"
-                    {{ old('meta_robots') == 'noindex, nofollow' ? 'selected' : null  }}
+                    {{ (isset($post) && ($post->meta_robots == 'noindex, nofollow')) ? 'selected' : null }}
+                    {{ (old('meta_robots') == 'noindex, nofollow') ? 'selected' : null }}
                 >No Seguir y No Indexar</option>
             </select>
 

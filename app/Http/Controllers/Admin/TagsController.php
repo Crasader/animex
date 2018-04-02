@@ -7,6 +7,11 @@ use Animex\Http\Controllers\Controller;
 
 class TagsController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
     /**
      * Display a listing of the resource.
      *

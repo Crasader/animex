@@ -20,6 +20,7 @@ class Post extends Model
         'seo_title',
         'seo_description',
         'meta_robots',
+        'published_at'
     ];
 
     protected $dates = ['published_at'];

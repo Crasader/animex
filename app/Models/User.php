@@ -29,6 +29,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * Retrieve user fullname
+     *
+     * @return string
+     */
+    public function full_name()
+    {
+        return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
+    }
+
+    /**
      * Get the posts for the user.
      *
      * @return Relation

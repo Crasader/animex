@@ -7,7 +7,7 @@
                 <img src="/img/avatar6.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Daniel Gonz&aacute;lez Brise&ntilde;o</p>
+                <p>{{ auth()->user()->full_name() }}</p>
             </div>
         </div><!-- / Sidebar user panel -->
 

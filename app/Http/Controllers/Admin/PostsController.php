@@ -5,11 +5,17 @@ namespace Animex\Http\Controllers\Admin;
 use Animex\Http\Requests\PostsRequest;
 use Animex\Models\Category;
 use Animex\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Animex\Http\Controllers\Controller;
 
 class PostsController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +51,7 @@ class PostsController extends Controller
     public function store(PostsRequest $request)
     {
         $post = new Post($request->all());
-        $post->user_id = 1; // Debemos poner Auth::user()->id
+        $post->user_id = auth()->user()->id;
         $post->save();
 
         session()->flash('message', 'Se ha creado el post "'.$post->title.'" exitosamente');
@@ -93,10 +99,23 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostsRequest $request, $id)
     {
         $post = Post::find($id);
-        $post->update($request->all());
+
+        $post->category_id = $request->category_id;
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->subtitle = $request->subtitle;
+        $post->image = $request->image;
+        $post->image_alt = $request->image_alt;
+        $post->content = $request->content;
+        $post->seo_title = $request->seo_title;
+        $post->seo_description = $request->seo_description;
+        $post->meta_robots = $request->meta_robots;
+        $post->published_at = Carbon::parse($request->published_at);
+
+        $post->save();
 
         session()->flash('message', "Se actualizo correctamente el post: \"{$post->title}\"");
 

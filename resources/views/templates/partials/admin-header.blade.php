@@ -118,7 +118,7 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="/img/avatar6.png" class="user-image" alt="User Image">
-                        <span class="hidden-xs">Sonusbeat</span>
+                        <span class="hidden-xs">{{ auth()->user()->username }}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -126,9 +126,9 @@
                             <img src="/img/avatar6.png" class="img-circle" alt="User Image">
 
                             <p>
-                                Daniel Gonz&aacute;lez Brise&ntilde;o<br>
+                                {{ auth()->user()->full_name() }}<br>
                                 -- Desarrollador Web --
-                                <small>Miembro desde Dec. 2015</small>
+                                <small>Miembro desde {{ auth()->user()->created_at->format('Y') }}</small>
                             </p>
                         </li>
                         <!-- Menu Body -->
@@ -146,10 +146,13 @@
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                                <a href="{{ route('admin.users.show', auth()->user()->username) }}" class="btn btn-default btn-flat">Perfil</a>
                             </div>
                             <div class="pull-right">
-                                <a href="#" class="btn btn-default btn-flat">Salir</a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                    {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-default btn-flat">Salir</button>
+                                </form>
                             </div>
                         </li>
                     </ul>
