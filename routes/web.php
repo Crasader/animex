@@ -8,6 +8,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
         return view('admin.dashboard');
     })->name('dashboard')->middleware('auth');
 
+    Route::patch('users/status/{id}', 'UsersController@status')->name('users.status');
     Route::resource('users', 'UsersController');
     Route::patch('categories/status/{id}', 'CategoriesController@status')->name('categories.status');
     Route::resource('categories', 'CategoriesController');

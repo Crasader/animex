@@ -27,9 +27,15 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">NAVEGACI&Oacute;N PRINCIPAL</li>
+
             <li>
                 <a href="/admin"><i class="fa fa-dashboard {{ (Request::segment(2) == '' ? 'text-aqua' : null) }}"></i>&nbsp;<span>Dashboard</span></a>
             </li>
+
+            <li>
+                <a href="{{ route('admin.users.index') }}"><i class="fa fa-user {{ (Request::segment(2) == 'users' ? 'text-aqua' : null) }}"></i>&nbsp;<span>Usuarios</span></a>
+            </li>
+
             <li class="treeview {{ (Request::segment(2) != '' ? 'active menu-open' : null) }}">
                 <a href="#">
                     <i class="fa fa-bars"></i> <span>Blog</span>
