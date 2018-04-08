@@ -12,7 +12,7 @@
         <h3>Formulario para crear post</h3>
     </div><!-- /.box-header -->
     <div class="box-body pad">
-        <form action="{{ route('admin.posts.store') }}" method="POST">
+        <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
             @include('admin.posts._form')
 
             <div class="row">

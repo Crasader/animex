@@ -66,13 +66,17 @@
 
 <div class="row">
     <div class="col-md-6">
-        <img src="/images/no-image.jpg" alt="Sin Imagen" class="img-responsive">
+        @if($post->image)
+            <img src="/images/posts/{{ $post->image }}" alt="{{ $post->image_alt }}" class="img-responsive">
+        @else
+            <img src="/images/no-image.jpg" alt="Sin Imagen" class="img-responsive">
+        @endif
     </div>
     <div class="col-md-6">
         <!-- Image -->
         <div class="form-group {{ $errors->has('image') ? 'has-error' : null }}">
             <label for="image">Imagen</label>
-            <input class="form-control" id="image" type="text" name="image">
+            <input class="form-control" id="image" type="file" name="image">
 
             {!! $errors->first('image', '<p class="text-bold text-danger">:message</p>') !!}
         </div>

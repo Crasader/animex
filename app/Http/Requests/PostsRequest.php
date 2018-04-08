@@ -3,6 +3,7 @@
 namespace Animex\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Routing\Route;
 
 class PostsRequest extends FormRequest
 {
@@ -19,14 +20,17 @@ class PostsRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
+     * @param Route $route
      * @return array
      */
-    public function rules()
+    public function rules(Route $route)
     {
+        $id = ($route->parameters != []) ? $route->parameters['post'] : null;
+
         return [
             'category_id'     => 'required',
             'title'           => 'required|between:4,150',
-            'slug'            => 'required|between:4,150',
+            'slug'            => 'required|between:4,150|unique:posts,slug,'.$id,
             'published_at'    => 'required',
             'content'         => 'required|min:12',
             'seo_title'       => 'required|max:70',

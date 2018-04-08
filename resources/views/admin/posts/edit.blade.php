@@ -12,7 +12,7 @@
         <h3>Formulario para editar el post</h3>
     </div><!-- /.box-header -->
     <div class="box-body pad">
-        <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+        <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="PATCH">
 
             @include('admin.posts._form')

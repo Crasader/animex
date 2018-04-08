@@ -24,14 +24,14 @@ class CategoriesRequest extends FormRequest
      */
     public function rules(Route $route)
     {
+        $id = ($route->parameters != []) ? $route->parameters['category']->id : null;
+
         return [
             'name' => 'required|between:4,150',
             'slug' => [
                 'required',
                 'between:4,150',
-                'unique:categories,slug,'.$route->parameters ?
-                    $route->parameters['category']->id :
-                    null
+                'unique:categories,slug,'.$id
             ]
         ];
     }

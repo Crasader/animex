@@ -14,6 +14,7 @@ class PagesController extends Controller
             ->with(['user' => function($query) {
                 $query->select(['id', 'first_name', 'last_name', 'username']);
             }])
+            ->where('active', true)
             ->limit(4)
             ->orderBy('created_at', 'desc')
             ->get();

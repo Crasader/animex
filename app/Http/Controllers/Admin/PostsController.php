@@ -8,6 +8,7 @@ use Animex\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Animex\Http\Controllers\Controller;
+use File;
 
 class PostsController extends Controller
 {
@@ -50,8 +51,23 @@ class PostsController extends Controller
      */
     public function store(PostsRequest $request)
     {
-        $post = new Post($request->all());
+        $post = new Post($request->except(['image','image_alt','published_at']));
         $post->user_id = auth()->user()->id;
+        $post->published_at = Carbon::parse($request->published_at);
+
+        if ($request->hasFile('image')) :
+            $image = $request->image;
+
+            $fileName = $image->getClientOriginalName();
+            $fileExtension = $image->getClientOriginalExtension();
+            $path = public_path().'/images/posts/';
+
+            $post->image = $fileName;
+            $post->image_alt = $request->image_alt;
+
+            $image->move($path, $fileName);
+        endif;
+
         $post->save();
 
         session()->flash('message', 'Se ha creado el post "'.$post->title.'" exitosamente');
@@ -107,13 +123,26 @@ class PostsController extends Controller
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->subtitle = $request->subtitle;
-        $post->image = $request->image;
-        $post->image_alt = $request->image_alt;
         $post->content = $request->content;
         $post->seo_title = $request->seo_title;
         $post->seo_description = $request->seo_description;
         $post->meta_robots = $request->meta_robots;
         $post->published_at = Carbon::parse($request->published_at);
+
+        if ($request->file('image')) :
+            $image = $request->image;
+
+            $fileName = $image->getClientOriginalName();
+            $fileExtension = $image->getClientOriginalExtension();
+            $path = public_path().'/images/posts/';
+
+            File::delete($path.$post->image);
+
+            $post->image = $fileName;
+            $post->image_alt = $request->image_alt;
+
+            $image->move($path, $fileName);
+        endif;
 
         $post->save();
 
